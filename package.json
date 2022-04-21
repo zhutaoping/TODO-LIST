@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"webpack:watch": "npx webpack --watch",
 		"build": "webpack",
+		"webpack:watch": "npx webpack --watch",
 		"watch:sass": "node-sass src/sass/main.scss css/style.css -w",
 		"compile:sass": "node-sass sass/main.scss css/style.comp.css",
 		"prefix:css": "postcss css/style.concat.css --use autoprefixer  -o css/style.prefix.css",
