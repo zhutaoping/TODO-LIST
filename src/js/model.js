@@ -5,7 +5,11 @@ export const state = {
 	priority: "",
 };
 
-export const addTodo = function () {};
+export const loadInputTodo = function (inputText) {
+	state.title = inputText;
+
+	console.log(state.title);
+};
 
 export const deleteTodo = function () {};
 

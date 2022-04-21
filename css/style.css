@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;900&display=swap");
 *,
 *::before,
 *::after {
@@ -10,8 +11,54 @@ html {
   font-size: 62.5%; }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #dedede;
   height: 100vh;
-  background-color: #dedede; }
+  display: flex;
+  justify-content: center;
+  padding: 3rem; }
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 5px; }
+  .todoList__item {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-left: 7px solid #4caf50;
+    font-size: 3rem;
+    /* transition: all 0.5s, transform 1ms; */ }
+
+.header {
+  background-color: #eeeeee;
+  color: #333;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 3px; }
+  .header__title {
+    color: #4caf50;
+    padding: 0.5rem 0 0 2rem;
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 0.5rem; }
+  .header__input-box {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem; }
+  .header__input-field {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    width: 100%; }
+    .header__input-field:focus {
+      background-color: #f7f7f7; }
+  .header__btn-input {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.1s; }
+    .header__btn-input:hover {
+      transform: translateY(-2px); }
+    .header__btn-input:active {
+      transform: translateY(0); }
