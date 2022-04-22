@@ -25,23 +25,5 @@
 		font-size: 2.5rem;
 		padding: 0 1rem;
 		width: 100%;
-
-		&:focus {
-			background-color: $color-grey-light-1;
-		}
-	}
-
-	&__btn-input {
-		padding: 0.5rem;
-		cursor: pointer;
-		transition: all 0.1s;
-
-		&:hover {
-			transform: translateY(-2px);
-		}
-
-		&:active {
-			transform: translateY(0);
-		}
 	}
 }

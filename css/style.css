@@ -13,7 +13,6 @@ html {
 body {
   font-family: "Noto Sans TC", sans-serif;
   background-color: #dedede;
-  height: 100vh;
   display: flex;
   justify-content: center;
   padding: 3rem; }
@@ -25,10 +24,31 @@ body {
   gap: 5px; }
   .todoList__item {
     background-color: #f7f7f7;
-    padding: 10px;
-    border-left: 7px solid #4caf50;
+    padding: 1rem 2rem;
+    border-left: 0.7rem solid #4caf50;
     font-size: 3rem;
-    /* transition: all 0.5s, transform 1ms; */ }
+    transition: all 0.5s;
+    display: flex;
+    align-items: center; }
+  .todoList__text {
+    padding-bottom: 3px;
+    font-weight: 400; }
+
+.btn {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.1s; }
+  .btn:hover {
+    transform: translateY(-2px); }
+  .btn:active {
+    transform: translateY(0); }
+
+.checkbox {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 2rem; }
+  .checkbox:checked + label {
+    text-decoration: line-through; }
 
 .header {
   background-color: #eeeeee;
@@ -52,13 +72,3 @@ body {
     font-size: 2.5rem;
     padding: 0 1rem;
     width: 100%; }
-    .header__input-field:focus {
-      background-color: #f7f7f7; }
-  .header__btn-input {
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: all 0.1s; }
-    .header__btn-input:hover {
-      transform: translateY(-2px); }
-    .header__btn-input:active {
-      transform: translateY(0); }

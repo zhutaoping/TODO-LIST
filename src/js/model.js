@@ -1,18 +1,36 @@
-export const state = {
-	title: "",
-	description: "",
-	dueDate: "",
-	priority: "",
-};
+import viewTodos from "./views/viewTodos";
 
-export const loadInputTodo = function (inputText) {
-	state.title = inputText;
+class Model {
+	todos = [
+		{ id: 1, text: "Run a marathon", complete: false },
+		{ id: 2, text: "Plant a garden", complete: false },
+	];
 
-	console.log(state.title);
-};
+	addTodo(todoText) {
+		const todo = {
+			id: this.todos.length > 0 ? this.todos[this.todos.length - 1].id + 1 : 1,
+			text: todoText,
+			complete: false,
+		};
+		this.todos.push(todo);
+		this.onTodoListChanged(this.todos);
+	}
 
-export const deleteTodo = function () {};
+	deleteTodo(id) {
+		this.todos = this.todos.filter((todo) => todo.id !== id);
 
-const persistTodos = function () {};
+		this.onTodoListChanged(this.todos);
+	}
 
-export const restoreTodos = function () {};
+	toggleTodo() {}
+
+	bindTodoListChanged(callback) {
+		this.onTodoListChanged = callback;
+	}
+
+	persistTodos() {}
+
+	restoreTodos() {}
+}
+
+export default new Model();

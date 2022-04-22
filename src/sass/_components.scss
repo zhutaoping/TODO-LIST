@@ -6,11 +6,41 @@
 	// width: clamp(100px 50vw 700px);
 
 	&__item {
-		// width: 100%;
 		background-color: $color-grey-light-1;
-		padding: 10px;
-		border-left: 7px solid $color-primary;
+		padding: 1rem 2rem;
+		border-left: 0.7rem solid $color-primary;
 		font-size: 3rem;
-		/* transition: all 0.5s, transform 1ms; */
+		transition: all 0.5s;
+		display: flex;
+		align-items: center;
+	}
+
+	&__text {
+		padding-bottom: 3px;
+		font-weight: 400;
+	}
+}
+
+.btn {
+	padding: 0.5rem;
+	cursor: pointer;
+	transition: all 0.1s;
+
+	&:hover {
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+}
+
+.checkbox {
+	height: 2rem;
+	width: 2rem;
+	margin-right: 2rem;
+
+	&:checked + label {
+		text-decoration: line-through;
 	}
 }
