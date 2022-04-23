@@ -20,33 +20,35 @@ body {
 .todoList {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 2rem;
   gap: 5px; }
   .todoList__item {
     background-color: #f7f7f7;
     padding: 0rem 2rem;
     border-left: 0.7rem solid #4caf50;
-    font-size: 3rem;
+    font-size: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: all 0.2s; }
     .todoList__item:nth-child(even) {
       background: #eeeeee; }
-    .todoList__item:hover {
-      background-color: #dedede; }
   .todoList__text {
-    padding: 1rem 3rem 1.5rem 1rem;
-    font-weight: 400; }
+    padding: 1rem;
+    font-weight: 400;
+    cursor: pointer; }
   .todoList__checkbox {
     height: 2.5rem;
     width: 2.5rem;
     margin-right: 1rem; }
-    .todoList__checkbox:checked + label {
+    .todoList__checkbox:checked ~ span {
       text-decoration: line-through;
       color: #999; }
   .todoList__dueDate {
-    font-size: 2rem; }
+    padding: 1rem;
+    font-size: 1.7rem;
+    border: none;
+    background-color: inherit; }
   .todoList__fhbox {
     display: flex;
     align-items: center; }
@@ -55,7 +57,7 @@ body {
     align-items: center; }
 
 .btn {
-  background-color: #f7f7f7;
+  background-color: inherit;
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all 0.1s; }

@@ -3,10 +3,15 @@ import viewTodos from "./views/viewTodos.js";
 
 class Controller {
 	constructor() {
+		// app start loading
 		this.onTodoListChanged(model.todos);
+
 		viewTodos.bindAddTodo(this.handleAddTodo);
 		viewTodos.bindDeleteTodo(this.handleDeleteTodo);
 		viewTodos.bindToggleTodo(this.handleToggleTodo);
+		viewTodos.bindEditTodoText(this.handleEditTodoText);
+		// viewTodos.bindEditTodoDueDate(this.handleEditTodoDueDate);
+
 		model.bindTodoListChanged(this.onTodoListChanged);
 	}
 
@@ -15,18 +20,24 @@ class Controller {
 	};
 
 	handleAddTodo = (todoText, todoDueDate) => {
-		// console.log(todoText);
 		if (!todoText) return;
 		model.addTodo(todoText, todoDueDate);
 	};
 
 	handleDeleteTodo = (id) => {
-		// console.log(id);
 		model.deleteTodo(id);
 	};
 
 	handleToggleTodo = (id) => {
 		model.toggleTodo(id);
+	};
+
+	handleEditTodoText = (id, updatedText) => {
+		model.editTodoText(id, updatedText);
+	};
+
+	handleEditTodoDueDate = (id, updatedDueDate) => {
+		model.editTodoDueDate(id, updatedDueDate);
 	};
 }
 

@@ -1,6 +1,35 @@
 import { DateTime } from "luxon";
 
 class ViewTodos {
+	constructor() {
+		this._temporaryTodoText;
+		this._temporaryTodoDueDate;
+		this._initLocalListeners();
+	}
+
+	_initLocalListeners() {
+		this.todoList.addEventListener("input", (e) => {
+			if (e.target.classList.contains("editable--1")) {
+				this._temporaryTodoText = e.target.innerText;
+			}
+		});
+
+		this.todoList.addEventListener("input", (e) => {
+			if (e.target.classList.contains("editable--2")) {
+				console.log(e.target);
+				e.target.setAttribute("type", "datetime-local");
+				this._temporaryTodoDueDate = e.target.innerText;
+			}
+		});
+
+		this.inputText.addEventListener("keyup", function (event) {
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				document.querySelector(".header__btn-input").click();
+			}
+		});
+	}
+
 	btn = document.querySelector(".header__btn-input");
 	inputText = document.querySelector(".header__input-text");
 	todoList = document.querySelector(".todoList");
@@ -18,7 +47,7 @@ class ViewTodos {
 		todos.forEach((todo) => {
 			let dt = "";
 			if (todo.dueDate) {
-				dt = DateTime.fromISO(todo.dueDate).toFormat("M月d日");
+				dt = DateTime.fromISO(todo.dueDate).toFormat("M月d日 HH:mm");
 			}
 
 			const markup = `
@@ -27,10 +56,12 @@ class ViewTodos {
 						<input type="checkbox" class="checkbox todoList__checkbox" id="complete" ${
 							todo.complete ? "checked" : ""
 						}>
-						<label class="todoList__text editable" contenteditable=${
+						<span class="todoList__text editable--1" contenteditable=${
 							todo.complete ? "false" : ""
-						} >${todo.text}</label>
-						<span class="todoList__dueDate">${dt}</span>
+						} >${todo.text}</span>
+
+						<span class="todoList__dueDate" >${dt}</span>
+
 					</div>
 					<div class="todoList__shbox">
 						<img
@@ -65,8 +96,6 @@ class ViewTodos {
 
 	bindAddTodo(handler) {
 		this.btn.addEventListener("click", (e) => {
-			// e.preventDefault();
-			// console.log(this._todoDueDate);
 			if (this._todoText) {
 				handler(this._todoText, this._todoDueDate);
 				this._resetInput();
@@ -76,7 +105,6 @@ class ViewTodos {
 
 	bindDeleteTodo(handler) {
 		this.todoList.addEventListener("click", (e) => {
-			// e.preventDefault();
 			if (e.target.classList.contains("delete")) {
 				const id = this._getTodoId(e);
 				handler(+id);
@@ -86,19 +114,37 @@ class ViewTodos {
 
 	bindToggleTodo(handler) {
 		this.todoList.addEventListener("click", (e) => {
-			// console.log(e.target);
-			// clo.setAttribute("disabled", "");
 			if (e.target.classList.contains("checkbox")) {
-				e.target
-					.closest(".todoList__item")
-					.querySelector(".editable")
-					.setAttribute("contenteditable", '`true ? "" : true`');
+				// e.target
+				// 	.closest(".todoList__item")
+				// 	.querySelector(".editable")
+				// 	.setAttribute("contenteditable", `true ? "" : "true"`);
 
 				const id = this._getTodoId(e);
 				handler(+id);
 			}
 		});
 	}
+
+	bindEditTodoText(handler) {
+		this.todoList.addEventListener("focusout", (e) => {
+			if (this._temporaryTodoText) {
+				const id = this._getTodoId(e);
+				handler(+id, this._temporaryTodoText);
+				this._temporaryTodoText = "";
+			}
+		});
+	}
+
+	// bindEditTodoDueDate(handler) {
+	// 	this.todoList.addEventListener("focusout", (e) => {
+	// 		if (this._temporaryTodoDueDate) {
+	// 			const id = this._getTodoId(e);
+	// 			handler(+id, this._temporaryTodoDueDate);
+	// 			this._temporaryTodoDueDate = "";
+	// 		}
+	// 	});
+	// }
 }
 
 export default new ViewTodos();

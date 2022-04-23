@@ -1,9 +1,15 @@
 import viewTodos from "./views/viewTodos";
+
 class Model {
-	todos = [
-		// { id: 1, text: "Run a marathon", complete: false },
-		// { id: 2, text: "Plant a garden", complete: false },
-	];
+	constructor() {
+		this.todos = JSON.parse(localStorage.getItem("todos")) || [];
+	}
+	todos = [];
+
+	#commit(todos) {
+		this.onTodoListChanged(todos);
+		localStorage.setItem("todos", JSON.stringify(todos));
+	}
 
 	addTodo(todoText, todoDueDate) {
 		const todo = {
@@ -13,34 +19,43 @@ class Model {
 			dueDate: todoDueDate,
 		};
 		this.todos.push(todo);
-		this.onTodoListChanged(this.todos);
+
+		this.#commit(this.todos);
 	}
 
 	deleteTodo(id) {
 		this.todos = this.todos.filter((todo) => todo.id !== id);
-		viewTodos.renderTodos(this.todos);
+		this.#commit(this.todos);
 	}
 
 	toggleTodo(id) {
-		// this.todos = this.todos.map((todo) =>
-		// 	todo.id === id
-		// 		? { id: todo.id, text: todo.text, complete: !todo.complete }
-		// 		: todo
-		// );
 		const found = this.todos.find((todo) => todo.id === id);
 		found.complete = !found.complete;
-		viewTodos.renderTodos(this.todos);
-
-		console.log(this.todos);
+		this.#commit(this.todos);
 	}
 
+	editTodoText(id, updatedText) {
+		this.todos.forEach((todo) => {
+			if (todo.id === id) {
+				todo.text = updatedText;
+			}
+		});
+		this.#commit(this.todos);
+	}
+
+	editTodoDueDate(id, updatedDueDate) {
+		this.todos.forEach((todo) => {
+			if (todo.id === id) {
+				todo.dueDate = updatedDueDate;
+			}
+		});
+		this.#commit(this.todos);
+	}
+
+	// weird trick
 	bindTodoListChanged(callback) {
 		this.onTodoListChanged = callback;
 	}
-
-	persistTodos() {}
-
-	restoreTodos() {}
 }
 
 export default new Model();
