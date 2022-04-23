@@ -14,10 +14,10 @@ class Controller {
 		viewTodos.renderTodos(todos);
 	};
 
-	handleAddTodo = (todoText) => {
+	handleAddTodo = (todoText, todoDueDate) => {
 		// console.log(todoText);
 		if (!todoText) return;
-		model.addTodo(todoText);
+		model.addTodo(todoText, todoDueDate);
 	};
 
 	handleDeleteTodo = (id) => {

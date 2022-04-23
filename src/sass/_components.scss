@@ -3,17 +3,24 @@
 	flex-direction: column;
 	margin-top: 1rem;
 	gap: 5px;
-	// width: clamp(100px 50vw 700px);
 
 	&__item {
 		background-color: $color-grey-light-1;
-		padding: 1rem 2rem;
+		padding: 0rem 2rem;
 		border-left: 0.7rem solid $color-primary;
 		font-size: 3rem;
-		transition: all 0.5s;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		transition: all 0.2s;
+
+		&:nth-child(even) {
+			background: $color-grey-light-2;
+		}
+
+		&:hover {
+			background-color: $color-grey-light-3;
+		}
 	}
 
 	&__text {
@@ -32,6 +39,10 @@
 		}
 	}
 
+	&__dueDate {
+		font-size: 2rem;
+	}
+
 	&__fhbox {
 		display: flex;
 		align-items: center;
@@ -44,6 +55,7 @@
 }
 
 .btn {
+	background-color: $color-grey-light-1;
 	padding: 0.5rem 1rem;
 	cursor: pointer;
 	transition: all 0.1s;

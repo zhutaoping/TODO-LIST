@@ -20,11 +20,13 @@
 			<div class="header__input-box">
 				<input
 					type="text"
-					name="header__input-field"
-					id="header__input-field"
-					class="header__input-field"
+					name="header__input-text"
+					id="header__input-text"
+					class="header__input-text"
+					placeholder="輸入事項"
 					autofocus
 				/>
+				
 				<button class="btn header__btn-input" type="submit" style="border: 0">
 					<img
 						src="../src/images/plus.png"
@@ -35,6 +37,13 @@
 					/>
 				</button>
 			</div>
+			<input
+					name="header__input-dueDate"
+					id="header__input-dueDate"
+					class="header__input-dueDate"
+					placeholder="Type Date" 
+					type="datetime-local" 
+				/>
 		</div>
 		<div class="todoList"></div>
 	</body>

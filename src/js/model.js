@@ -1,16 +1,16 @@
 import viewTodos from "./views/viewTodos";
-
 class Model {
 	todos = [
 		// { id: 1, text: "Run a marathon", complete: false },
 		// { id: 2, text: "Plant a garden", complete: false },
 	];
 
-	addTodo(todoText) {
+	addTodo(todoText, todoDueDate) {
 		const todo = {
 			id: this.todos.length > 0 ? this.todos[this.todos.length - 1].id + 1 : 1,
 			text: todoText,
 			complete: false,
+			dueDate: todoDueDate,
 		};
 		this.todos.push(todo);
 		this.onTodoListChanged(this.todos);
@@ -29,7 +29,7 @@ class Model {
 		// );
 		const found = this.todos.find((todo) => todo.id === id);
 		found.complete = !found.complete;
-		// viewTodos.renderTodos(this.todos);
+		viewTodos.renderTodos(this.todos);
 
 		console.log(this.todos);
 	}
