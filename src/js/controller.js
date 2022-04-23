@@ -5,6 +5,7 @@ class Controller {
 	constructor() {
 		this.onTodoListChanged(model.todos);
 		viewTodos.bindAddTodo(this.handleAddTodo);
+		viewTodos.bindDeleteTodo(this.handleDeleteTodo);
 
 		model.bindTodoListChanged(this.onTodoListChanged);
 	}
@@ -17,6 +18,11 @@ class Controller {
 		// console.log(todoText);
 		if (!todoText) return;
 		model.addTodo(todoText);
+	};
+
+	handleDeleteTodo = (id) => {
+		// console.log(id);
+		model.deleteTodo(id);
 	};
 }
 

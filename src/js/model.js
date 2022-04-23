@@ -18,8 +18,7 @@ class Model {
 
 	deleteTodo(id) {
 		this.todos = this.todos.filter((todo) => todo.id !== id);
-
-		this.onTodoListChanged(this.todos);
+		viewTodos.renderTodos(this.todos);
 	}
 
 	toggleTodo() {}

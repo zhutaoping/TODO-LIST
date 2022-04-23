@@ -13,16 +13,27 @@
 		transition: all 0.5s;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 	}
 
 	&__text {
 		padding-bottom: 3px;
 		font-weight: 400;
 	}
+
+	&__fhbox {
+		display: flex;
+		align-items: center;
+	}
+
+	&__shbox {
+		display: flex;
+		align-items: center;
+	}
 }
 
 .btn {
-	padding: 0.5rem;
+	padding: 0.5rem 1rem;
 	cursor: pointer;
 	transition: all 0.1s;
 

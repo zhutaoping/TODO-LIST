@@ -29,13 +29,20 @@ body {
     font-size: 3rem;
     transition: all 0.5s;
     display: flex;
-    align-items: center; }
+    align-items: center;
+    justify-content: space-between; }
   .todoList__text {
     padding-bottom: 3px;
     font-weight: 400; }
+  .todoList__fhbox {
+    display: flex;
+    align-items: center; }
+  .todoList__shbox {
+    display: flex;
+    align-items: center; }
 
 .btn {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all 0.1s; }
   .btn:hover {
