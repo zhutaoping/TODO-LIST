@@ -32,8 +32,15 @@ body {
     align-items: center;
     justify-content: space-between; }
   .todoList__text {
-    padding-bottom: 3px;
+    padding: 1rem 3rem 1.5rem 1rem;
     font-weight: 400; }
+  .todoList__checkbox {
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 1rem; }
+    .todoList__checkbox:checked + label {
+      text-decoration: line-through;
+      color: #999; }
   .todoList__fhbox {
     display: flex;
     align-items: center; }
@@ -49,13 +56,6 @@ body {
     transform: translateY(-2px); }
   .btn:active {
     transform: translateY(0); }
-
-.checkbox {
-  height: 2rem;
-  width: 2rem;
-  margin-right: 2rem; }
-  .checkbox:checked + label {
-    text-decoration: line-through; }
 
 .header {
   background-color: #eeeeee;

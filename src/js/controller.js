@@ -6,7 +6,7 @@ class Controller {
 		this.onTodoListChanged(model.todos);
 		viewTodos.bindAddTodo(this.handleAddTodo);
 		viewTodos.bindDeleteTodo(this.handleDeleteTodo);
-
+		viewTodos.bindToggleTodo(this.handleToggleTodo);
 		model.bindTodoListChanged(this.onTodoListChanged);
 	}
 
@@ -23,6 +23,10 @@ class Controller {
 	handleDeleteTodo = (id) => {
 		// console.log(id);
 		model.deleteTodo(id);
+	};
+
+	handleToggleTodo = (id) => {
+		model.toggleTodo(id);
 	};
 }
 

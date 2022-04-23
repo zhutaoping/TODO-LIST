@@ -2,8 +2,8 @@ import viewTodos from "./views/viewTodos";
 
 class Model {
 	todos = [
-		{ id: 1, text: "Run a marathon", complete: false },
-		{ id: 2, text: "Plant a garden", complete: false },
+		// { id: 1, text: "Run a marathon", complete: false },
+		// { id: 2, text: "Plant a garden", complete: false },
 	];
 
 	addTodo(todoText) {
@@ -21,7 +21,18 @@ class Model {
 		viewTodos.renderTodos(this.todos);
 	}
 
-	toggleTodo() {}
+	toggleTodo(id) {
+		// this.todos = this.todos.map((todo) =>
+		// 	todo.id === id
+		// 		? { id: todo.id, text: todo.text, complete: !todo.complete }
+		// 		: todo
+		// );
+		const found = this.todos.find((todo) => todo.id === id);
+		found.complete = !found.complete;
+		// viewTodos.renderTodos(this.todos);
+
+		console.log(this.todos);
+	}
 
 	bindTodoListChanged(callback) {
 		this.onTodoListChanged = callback;

@@ -17,8 +17,19 @@
 	}
 
 	&__text {
-		padding-bottom: 3px;
+		padding: 1rem 3rem 1.5rem 1rem;
 		font-weight: 400;
+	}
+
+	&__checkbox {
+		height: 2.5rem;
+		width: 2.5rem;
+		margin-right: 1rem;
+
+		&:checked + label {
+			text-decoration: line-through;
+			color: $color-grey-dark-1;
+		}
 	}
 
 	&__fhbox {
@@ -43,15 +54,5 @@
 
 	&:active {
 		transform: translateY(0);
-	}
-}
-
-.checkbox {
-	height: 2rem;
-	width: 2rem;
-	margin-right: 2rem;
-
-	&:checked + label {
-		text-decoration: line-through;
 	}
 }
