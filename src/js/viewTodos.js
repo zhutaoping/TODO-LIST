@@ -1,9 +1,9 @@
 import { DateTime } from "luxon";
 
 class ViewTodos {
+	_temporaryTodoText;
+
 	constructor() {
-		this._temporaryTodoText;
-		this._temporaryTodoDueDate;
 		this._initLocalListeners();
 	}
 
@@ -22,21 +22,28 @@ class ViewTodos {
 			}
 		});
 
-		this.inputText.addEventListener("keyup", function (event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
+		this.inputText.addEventListener("keyup", (e) => {
+			if (e.keyCode === 13) {
+				e.preventDefault();
 				document.querySelector(".header__btn-input").click();
 			}
 		});
 	}
 
 	btn = document.querySelector(".header__btn-input");
+
 	inputText = document.querySelector(".header__input-text");
+
 	todoList = document.querySelector(".todoList");
+
 	todoListItem = document.querySelector(".todoList__item");
+
 	deleteBtn = document.querySelector(".todoList__delete-btn");
+
 	editable = document.querySelector(".editable");
+
 	todoListShbox = document.querySelector(".todoList__shbox");
+
 	inputDueDate = document.querySelector(".header__input-dueDate");
 
 	renderTodos(todos) {
@@ -51,7 +58,7 @@ class ViewTodos {
 			}
 
 			const markup = `
-      	<div class="todoList__item" data-id=${todo.id}>
+      	<div class="todoList__item show" data-id=${todo.id}>
 					<div class="todoList__fhbox">
 						<input type="checkbox" class="checkbox todoList__checkbox" id="complete" ${
 							todo.complete ? "checked" : ""
@@ -90,12 +97,12 @@ class ViewTodos {
 		this.inputText.value = "";
 	}
 
-	_getTodoId(e) {
+	static getTodoId(e) {
 		return e.target.closest(".todoList__item").getAttribute("data-id");
 	}
 
 	bindAddTodo(handler) {
-		this.btn.addEventListener("click", (e) => {
+		this.btn.addEventListener("click", () => {
 			if (this._todoText) {
 				handler(this._todoText, this._todoDueDate);
 				this._resetInput();
@@ -106,7 +113,8 @@ class ViewTodos {
 	bindDeleteTodo(handler) {
 		this.todoList.addEventListener("click", (e) => {
 			if (e.target.classList.contains("delete")) {
-				const id = this._getTodoId(e);
+				const id = ViewTodos.getTodoId(e);
+				e.target.closest(".todoList__item").classList.add("item-delete");
 				handler(+id);
 			}
 		});
@@ -120,7 +128,7 @@ class ViewTodos {
 				// 	.querySelector(".editable")
 				// 	.setAttribute("contenteditable", `true ? "" : "true"`);
 
-				const id = this._getTodoId(e);
+				const id = ViewTodos.getTodoId(e);
 				handler(+id);
 			}
 		});
@@ -129,22 +137,12 @@ class ViewTodos {
 	bindEditTodoText(handler) {
 		this.todoList.addEventListener("focusout", (e) => {
 			if (this._temporaryTodoText) {
-				const id = this._getTodoId(e);
+				const id = ViewTodos.getTodoId(e);
 				handler(+id, this._temporaryTodoText);
 				this._temporaryTodoText = "";
 			}
 		});
 	}
-
-	// bindEditTodoDueDate(handler) {
-	// 	this.todoList.addEventListener("focusout", (e) => {
-	// 		if (this._temporaryTodoDueDate) {
-	// 			const id = this._getTodoId(e);
-	// 			handler(+id, this._temporaryTodoDueDate);
-	// 			this._temporaryTodoDueDate = "";
-	// 		}
-	// 	});
-	// }
 }
 
 export default new ViewTodos();

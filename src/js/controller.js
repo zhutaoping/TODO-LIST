@@ -1,44 +1,45 @@
-import model from "./model.js";
-import viewTodos from "./views/viewTodos.js";
+/* eslint-disable class-methods-use-this */
+import model from "./model";
+import viewTodos from "./viewTodos";
 
 class Controller {
 	constructor() {
 		// app start loading
-		this.onTodoListChanged(model.todos);
+		Controller.onTodoListChanged(model.todos);
+		model.bindTodoListChanged(Controller.onTodoListChanged);
 
-		viewTodos.bindAddTodo(this.handleAddTodo);
-		viewTodos.bindDeleteTodo(this.handleDeleteTodo);
-		viewTodos.bindToggleTodo(this.handleToggleTodo);
-		viewTodos.bindEditTodoText(this.handleEditTodoText);
+		viewTodos.bindAddTodo(Controller.handleAddTodo);
+		viewTodos.bindDeleteTodo(Controller.handleDeleteTodo);
+		viewTodos.bindToggleTodo(Controller.handleToggleTodo);
+		viewTodos.bindEditTodoText(Controller.handleEditTodoText);
 		// viewTodos.bindEditTodoDueDate(this.handleEditTodoDueDate);
-
-		model.bindTodoListChanged(this.onTodoListChanged);
 	}
 
-	onTodoListChanged = (todos) => {
+	static onTodoListChanged(todos) {
 		viewTodos.renderTodos(todos);
-	};
+	}
 
-	handleAddTodo = (todoText, todoDueDate) => {
+	static handleAddTodo(todoText, todoDueDate) {
 		if (!todoText) return;
 		model.addTodo(todoText, todoDueDate);
-	};
+	}
 
-	handleDeleteTodo = (id) => {
+	static handleDeleteTodo(id) {
 		model.deleteTodo(id);
-	};
+	}
 
-	handleToggleTodo = (id) => {
+	static handleToggleTodo(id) {
 		model.toggleTodo(id);
-	};
+	}
 
-	handleEditTodoText = (id, updatedText) => {
+	static handleEditTodoText(id, updatedText) {
 		model.editTodoText(id, updatedText);
-	};
+	}
 
-	handleEditTodoDueDate = (id, updatedDueDate) => {
+	static handleEditTodoDueDate(id, updatedDueDate) {
 		model.editTodoDueDate(id, updatedDueDate);
-	};
+	}
 }
 
+// eslint-disable-next-line no-unused-vars
 const app = new Controller();

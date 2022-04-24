@@ -21,3 +21,55 @@ body {
 	justify-content: center;
 	padding: 3rem;
 }
+
+@keyframes expand {
+	from {
+		transform: scale(0);
+		opacity: 0;
+		background: #5470b0;
+	}
+}
+
+@keyframes moveDownFirst {
+	0% {
+		opacity: 0;
+		transform: translateY(-5rem);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes moveDown {
+	0% {
+		transform: translateY(-5.6rem);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes moveUpFirst {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(-5.6rem);
+	}
+}
+
+@keyframes moveUp {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(-5.6rem);
+	}
+}

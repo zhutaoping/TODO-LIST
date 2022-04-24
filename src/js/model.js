@@ -1,10 +1,11 @@
-import viewTodos from "./views/viewTodos";
+// import viewTodos from "./viewTodos";
 
 class Model {
+	todos = [];
+
 	constructor() {
 		this.todos = JSON.parse(localStorage.getItem("todos")) || [];
 	}
-	todos = [];
 
 	#commit(todos) {
 		this.onTodoListChanged(todos);
@@ -35,25 +36,26 @@ class Model {
 	}
 
 	editTodoText(id, updatedText) {
-		this.todos.forEach((todo) => {
-			if (todo.id === id) {
-				todo.text = updatedText;
+		this.todos.forEach((el) => {
+			if (el.id === id) {
+				el.text = updatedText;
 			}
 		});
 		this.#commit(this.todos);
 	}
 
 	editTodoDueDate(id, updatedDueDate) {
-		this.todos.forEach((todo) => {
-			if (todo.id === id) {
-				todo.dueDate = updatedDueDate;
+		this.todos.forEach((el) => {
+			if (el.id === id) {
+				el.dueDate = updatedDueDate;
 			}
 		});
 		this.#commit(this.todos);
 	}
 
-	// weird trick
+	// tricky
 	bindTodoListChanged(callback) {
+		// Model.onTodoListChanged = Controller.onTodoListChanged
 		this.onTodoListChanged = callback;
 	}
 }
