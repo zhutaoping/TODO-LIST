@@ -12,11 +12,10 @@ html {
 
 body {
   font-family: "Noto Sans TC", sans-serif;
+  background-color: white;
   display: flex;
   justify-content: center;
-  padding: 3rem;
-  min-height: 100vh;
-  background-image: linear-gradient(120deg, #f6d365, #fda085); }
+  padding: 3rem; }
 
 @keyframes moveDownFirst {
   0% {
@@ -46,6 +45,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between; }
+    .todoList__item:nth-child(even) {
+      background: #eeeeee; }
   .todoList__text {
     padding: 1rem;
     font-weight: 400;
@@ -99,11 +100,11 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 1rem; }
-  .header__text {
+  .header__input-text {
     font-size: 2.5rem;
     padding: 0 1rem;
     width: 100%; }
-  .header__dueDate {
+  .header__input-dueDate {
     padding: 0.3rem 1rem;
     width: fit-content;
     font-size: 1.7rem;
