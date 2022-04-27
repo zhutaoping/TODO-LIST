@@ -31,9 +31,9 @@ class Model {
 	}
 
 	editTodoText(id, updatedText) {
-		this.todos.forEach((todo) => {
-			if (todo.id === id) {
-				todo.text = updatedText;
+		this.todos.forEach((el) => {
+			if (el.id === id) {
+				el.text = updatedText;
 			}
 		});
 		viewTodos.initRender(this.todos);
