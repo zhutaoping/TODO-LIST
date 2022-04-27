@@ -1,5 +1,3 @@
-import viewTodos from "./viewTodos";
-
 class Model {
 	todos = [];
 
@@ -15,7 +13,8 @@ class Model {
 			dueDate: todoDueDate,
 		};
 		this.todos.push(todo);
-		viewTodos.addTodo(todo);
+		// viewTodos.addTodo(todo);
+		this.handleAddTodoRender(todo);
 		localStorage.setItem("todos", JSON.stringify(this.todos));
 	}
 
@@ -36,14 +35,18 @@ class Model {
 				el.text = updatedText;
 			}
 		});
-		viewTodos.initRender(this.todos);
+		// viewTodos.initRender(this.todos);
+		this.handleEditTodoRender(this.todos);
 		localStorage.setItem("todos", JSON.stringify(this.todos));
 	}
 
-	// tricky
-	// bindTodoListChanged(callback) {
-	// 	this.onTodoListChanged = callback;
-	// }
+	bindAddTodoRender(callback) {
+		this.handleAddTodoRender = callback;
+	}
+
+	bindEditTodoRender(callback) {
+		this.handleEditTodoRender = callback;
+	}
 }
 
 export default new Model();
