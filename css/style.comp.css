@@ -12,10 +12,11 @@ html {
 
 body {
   font-family: "Noto Sans TC", sans-serif;
-  background-color: white;
   display: flex;
   justify-content: center;
-  padding: 3rem; }
+  padding: 3rem;
+  min-height: 100vh;
+  background-image: linear-gradient(120deg, #f6d365, #fda085); }
 
 @keyframes moveDownFirst {
   0% {
@@ -45,8 +46,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between; }
-    .todoList__item:nth-child(even) {
-      background: #eeeeee; }
   .todoList__text {
     padding: 1rem;
     font-weight: 400;
@@ -81,6 +80,39 @@ body {
   .btn:active {
     transform: translateY(0); }
 
+[slide-in-from] {
+  opacity: 0;
+  transform: translateY(var(--translateY, 0)) translateX(var(--translateX, 0));
+  animation: slideInFrom 0.25s ease-out forwards; }
+
+[slide-in-from^="top"] {
+  --translateY: -100%; }
+
+[slide-in-from^="bottom"] {
+  --translateY: 100%; }
+
+[slide-in-from$="left"] {
+  --translateX: -100%; }
+
+[slide-in-from$="right"] {
+  --translateX: 100%; }
+
+@keyframes slideInFrom {
+  to {
+    transform: unset;
+    opacity: unset; } }
+
+[slide-out-to] {
+  opacity: 1;
+  animation: slideOutTo 0.25s ease-in forwards; }
+
+@keyframes slideOutTo {
+  from {
+    transform: translateY(0); }
+  to {
+    transform: translateY(100%);
+    opacity: 0; } }
+
 .header {
   background-color: #f7f7f7;
   width: 80vw;
@@ -100,11 +132,11 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 1rem; }
-  .header__input-text {
+  .header__text {
     font-size: 2.5rem;
     padding: 0 1rem;
     width: 100%; }
-  .header__input-dueDate {
+  .header__dueDate {
     padding: 0.3rem 1rem;
     width: fit-content;
     font-size: 1.7rem;

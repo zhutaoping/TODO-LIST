@@ -1,4 +1,5 @@
 const path = require("path");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
 	entry: "./src/js/controller.js",
@@ -7,4 +8,14 @@ module.exports = {
 		path: path.resolve(__dirname, "dist"),
 	},
 	mode: "development",
+	plugins: [new ESLintPlugin()],
 };
+
+module: {
+	rules: [
+		{
+			test: /\.css$/,
+			use: ["style-loader", "css-loader"],
+		},
+	];
+}
