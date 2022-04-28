@@ -86,7 +86,7 @@ class ViewTodos {
 		}
 
 		const markup = `
-      	<div class="todoList__item show" data-id=${todo.id}>
+      	<div slide-in-from="top"  class="todoList__item show" data-id=${todo.id}>
 					<div class="todoList__fhbox">
 						<input type="checkbox" class="checkbox todoList__checkbox" id="complete" ${
 							todo.completed ? "checked" : ""
@@ -108,7 +108,10 @@ class ViewTodos {
 						/>
 					</div>
      		</div>
-			`;
+				 `;
+		// if (this.todoList.childElementCount > 2) {
+		// 	this.todoList.removeChild(this.todoList.lastElementChild);
+		// }
 
 		this.todoList.insertAdjacentHTML("afterbegin", markup);
 	}
@@ -119,11 +122,10 @@ class ViewTodos {
 	}
 
 	static deleteTodo(todo) {
-		todo.classList.add("fall");
-		todo.remove();
-		// todo.addEventListener("transitionend", () => {
-		// 	todo.remove();
-		// });
+		todo.setAttribute("slide-out-to", "top");
+		todo.addEventListener("animationend", () => {
+			todo.remove();
+		});
 	}
 
 	static getTodoId(e) {

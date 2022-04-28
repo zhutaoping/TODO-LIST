@@ -4,8 +4,8 @@ import viewTodos from "./viewTodos";
 class Controller {
 	constructor() {
 		console.log(model.todos);
+		// viewTodos.initRender(model.getListPage());
 		viewTodos.initRender(model.todos);
-		// Controller.onTodoListChanged(model.todos);
 
 		viewTodos.bindAddTodo(Controller.handleAddTodo);
 		viewTodos.bindDeleteTodo(Controller.handleDeleteTodo);

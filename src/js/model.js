@@ -11,10 +11,11 @@ class Model {
 			text: todoText,
 			completed: false,
 			dueDate: todoDueDate,
+			page: 1,
 		};
 		this.todos.push(todo);
-		// viewTodos.addTodo(todo);
 		this.handleAddTodoRender(todo);
+
 		localStorage.setItem("todos", JSON.stringify(this.todos));
 	}
 
@@ -35,8 +36,7 @@ class Model {
 				el.text = updatedText;
 			}
 		});
-		// viewTodos.initRender(this.todos);
-		this.handleEditTodoRender(this.todos);
+		// this.handleEditTodoRender(this.todos);
 		localStorage.setItem("todos", JSON.stringify(this.todos));
 	}
 
@@ -47,6 +47,15 @@ class Model {
 	bindEditTodoRender(callback) {
 		this.handleEditTodoRender = callback;
 	}
+
+	// getListPage(page = this.page) {
+	// 	this.page = page;
+	// 	const reverseTodos = this.todos.slice().reverse();
+	// 	const start = (page - 1) * this.todosPerPage;
+	// 	const end = page * this.todosPerPage;
+	// 	const reversePage = reverseTodos.slice(start, end).reverse();
+	// 	return reversePage;
+	// }
 }
 
 export default new Model();
