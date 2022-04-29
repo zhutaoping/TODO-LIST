@@ -1,11 +1,11 @@
-import "../../css/style.css";
+import "../sass/main.scss";
 
 import model from "./model";
 import viewTodos from "./viewTodos";
 
 class Controller {
 	constructor() {
-		console.log(model.todos);
+		// console.log(model.todos);
 		// viewTodos.initRender(model.getListPage());
 		viewTodos.initRender(model.todos);
 
