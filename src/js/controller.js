@@ -1,3 +1,5 @@
+import "../../css/style.css";
+
 import model from "./model";
 import viewTodos from "./viewTodos";
 

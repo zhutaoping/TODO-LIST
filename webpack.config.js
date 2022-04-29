@@ -1,21 +1,31 @@
 const path = require("path");
-const ESLintPlugin = require("eslint-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	entry: "./src/js/controller.js",
+	mode: "none",
 	output: {
+		publicPath: "",
 		filename: "main.js",
 		path: path.resolve(__dirname, "dist"),
 	},
-	mode: "development",
-	plugins: [new ESLintPlugin()],
-};
+	plugins: [
+		new HtmlWebpackPlugin({
+			filename: "index.html",
+			template: "./src/index.html",
+		}),
+	],
 
-module: {
-	rules: [
-		{
-			test: /\.css$/,
-			use: ["style-loader", "css-loader"],
-		},
-	];
-}
+	module: {
+		rules: [
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"],
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				type: "asset/resource",
+			},
+		],
+	},
+};

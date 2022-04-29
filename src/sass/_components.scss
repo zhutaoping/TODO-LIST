@@ -7,7 +7,7 @@
 
 	&__item {
 		background-color: $color-grey-light-1;
-		padding: 0rem 2rem;
+		padding: 0rem 1rem;
 		border-left: 0.7rem solid $color-primary;
 		font-size: 2.5rem;
 		display: flex;
@@ -68,7 +68,7 @@
 
 .btn {
 	background-color: inherit;
-	padding: 0.5rem 1rem;
+	padding: 0.3rem;
 	cursor: pointer;
 	transition: all 0.1s;
 

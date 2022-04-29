@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
 
+import subIcon from "../../src/images/substract.png";
+
 class ViewTodos {
 	_temporaryTodoText;
 
@@ -100,9 +102,9 @@ class ViewTodos {
 					</div>
 					<div class="todoList__shbox">
 						<img
-							src="../src/images/substract.png"
-							weight="40"
-							height="40"
+							src="${subIcon}"
+							weight="50"
+							height="50"
 							alt="Delete button"
 							class="btn todoList__delete-btn delete"
 						/>
