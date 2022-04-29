@@ -7,7 +7,7 @@
 
 	&__item {
 		background-color: $color-grey-light-1;
-		padding: 0rem 2rem;
+		padding: 0rem 1rem;
 		border-left: 0.7rem solid $color-primary;
 		font-size: 2.5rem;
 		display: flex;
@@ -22,9 +22,9 @@
 		// 	animation: moveDown 0.5s ease;
 		// }
 
-		&:nth-child(even) {
-			background: $color-grey-light-2;
-		}
+		// &:nth-child(even) {
+		// 	background: $color-grey-light-2;
+		// }
 	}
 
 	&__text {
@@ -68,7 +68,7 @@
 
 .btn {
 	background-color: inherit;
-	padding: 0.5rem 1rem;
+	padding: 0.3rem;
 	cursor: pointer;
 	transition: all 0.1s;
 
@@ -81,7 +81,43 @@
 	}
 }
 
-.nav {
-	&__tabs {
+[slide-in-from] {
+	opacity: 0;
+	transform: translateY(var(--translateY, 0)) translateX(var(--translateX, 0));
+	animation: slideInFrom 0.25s ease-out forwards;
+}
+
+[slide-in-from^="top"] {
+	--translateY: -100%;
+}
+[slide-in-from^="bottom"] {
+	--translateY: 100%;
+}
+[slide-in-from$="left"] {
+	--translateX: -100%;
+}
+[slide-in-from$="right"] {
+	--translateX: 100%;
+}
+
+@keyframes slideInFrom {
+	to {
+		transform: unset;
+		opacity: unset;
+	}
+}
+
+[slide-out-to] {
+	opacity: 1;
+	animation: slideOutTo 0.25s ease-in forwards;
+}
+
+@keyframes slideOutTo {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(100%);
+		opacity: 0;
 	}
 }

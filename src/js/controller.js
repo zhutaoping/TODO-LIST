@@ -1,22 +1,29 @@
-/* eslint-disable class-methods-use-this */
+import "../sass/main.scss";
+
 import model from "./model";
 import viewTodos from "./viewTodos";
 
 class Controller {
 	constructor() {
-		// app start loading
-		Controller.onTodoListChanged(model.todos);
-		model.bindTodoListChanged(Controller.onTodoListChanged);
+		// console.log(model.todos);
+		// viewTodos.initRender(model.getListPage());
+		viewTodos.initRender(model.todos);
 
 		viewTodos.bindAddTodo(Controller.handleAddTodo);
 		viewTodos.bindDeleteTodo(Controller.handleDeleteTodo);
 		viewTodos.bindToggleTodo(Controller.handleToggleTodo);
 		viewTodos.bindEditTodoText(Controller.handleEditTodoText);
-		// viewTodos.bindEditTodoDueDate(this.handleEditTodoDueDate);
+
+		model.bindAddTodoRender(Controller.handleAddTodoRender);
+		model.bindEditTodoRender(Controller.handleEditTodoRender);
 	}
 
-	static onTodoListChanged(todos) {
-		viewTodos.renderTodos(todos);
+	static handleAddTodoRender(todo) {
+		viewTodos.addTodo(todo);
+	}
+
+	static handleEditTodoRender(todos) {
+		viewTodos.initRender(todos);
 	}
 
 	static handleAddTodo(todoText, todoDueDate) {
@@ -34,10 +41,6 @@ class Controller {
 
 	static handleEditTodoText(id, updatedText) {
 		model.editTodoText(id, updatedText);
-	}
-
-	static handleEditTodoDueDate(id, updatedDueDate) {
-		model.editTodoDueDate(id, updatedDueDate);
 	}
 }
 

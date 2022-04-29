@@ -40,7 +40,7 @@ body {
   transition: all 1s; }
   .todoList__item {
     background-color: #f7f7f7;
-    padding: 0rem 1rem;
+    padding: 0rem 2rem;
     border-left: 0.7rem solid #4caf50;
     font-size: 2.5rem;
     display: flex;
@@ -72,7 +72,7 @@ body {
 
 .btn {
   background-color: inherit;
-  padding: 0.3rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all 0.1s; }
   .btn:hover {

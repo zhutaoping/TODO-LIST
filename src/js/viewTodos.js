@@ -1,38 +1,21 @@
 import { DateTime } from "luxon";
 
+import subIcon from "../../src/images/substract.png";
+
 class ViewTodos {
 	_temporaryTodoText;
 
 	constructor() {
-		this._initLocalListeners();
-	}
-
-	_initLocalListeners() {
 		this.todoList.addEventListener("input", (e) => {
 			if (e.target.classList.contains("editable--1")) {
 				this._temporaryTodoText = e.target.innerText;
-			}
-		});
-
-		this.todoList.addEventListener("input", (e) => {
-			if (e.target.classList.contains("editable--2")) {
-				console.log(e.target);
-				e.target.setAttribute("type", "datetime-local");
-				this._temporaryTodoDueDate = e.target.innerText;
-			}
-		});
-
-		this.inputText.addEventListener("keyup", (e) => {
-			if (e.keyCode === 13) {
-				e.preventDefault();
-				document.querySelector(".header__btn-input").click();
 			}
 		});
 	}
 
 	btn = document.querySelector(".header__btn-input");
 
-	inputText = document.querySelector(".header__input-text");
+	inputText = document.querySelector(".header__text");
 
 	todoList = document.querySelector(".todoList");
 
@@ -44,68 +27,17 @@ class ViewTodos {
 
 	todoListShbox = document.querySelector(".todoList__shbox");
 
-	inputDueDate = document.querySelector(".header__input-dueDate");
-
-	renderTodos(todos) {
-		while (this.todoList.firstChild) {
-			this.todoList.removeChild(this.todoList.firstChild);
-		}
-
-		todos.forEach((todo) => {
-			let dt = "";
-			if (todo.dueDate) {
-				dt = DateTime.fromISO(todo.dueDate).toFormat("M月d日 HH:mm");
-			}
-
-			const markup = `
-      	<div class="todoList__item show" data-id=${todo.id}>
-					<div class="todoList__fhbox">
-						<input type="checkbox" class="checkbox todoList__checkbox" id="complete" ${
-							todo.complete ? "checked" : ""
-						}>
-						<span class="todoList__text editable--1" contenteditable=${
-							todo.complete ? "false" : ""
-						} >${todo.text}</span>
-
-						<span class="todoList__dueDate" >${dt}</span>
-
-					</div>
-					<div class="todoList__shbox">
-						<img
-							src="../src/images/substract.png"
-							weight="40"
-							height="40"
-							alt="Delete button"
-							class="btn todoList__delete-btn delete"
-						/>
-					</div>
-     		</div>
-			`;
-			this.todoList.insertAdjacentHTML("afterbegin", markup);
-		});
-	}
-
-	get _todoText() {
-		return this.inputText.value;
-	}
-
-	get _todoDueDate() {
-		return this.inputDueDate.value;
-	}
-
-	_resetInput() {
-		this.inputText.value = "";
-	}
-
-	static getTodoId(e) {
-		return e.target.closest(".todoList__item").getAttribute("data-id");
-	}
+	inputDueDate = document.querySelector(".header__dueDate");
 
 	bindAddTodo(handler) {
-		this.btn.addEventListener("click", () => {
-			if (this._todoText) {
-				handler(this._todoText, this._todoDueDate);
-				this._resetInput();
+		this.btn.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (this.inputText.value) {
+				const text = this.inputText.value;
+				const dueDate = this.inputDueDate.value;
+				handler(text, dueDate);
+
+				this.inputText.value = "";
 			}
 		});
 	}
@@ -114,7 +46,8 @@ class ViewTodos {
 		this.todoList.addEventListener("click", (e) => {
 			if (e.target.classList.contains("delete")) {
 				const id = ViewTodos.getTodoId(e);
-				e.target.closest(".todoList__item").classList.add("item-delete");
+				const todo = e.target.closest(".todoList__item");
+				ViewTodos.deleteTodo(todo);
 				handler(+id);
 			}
 		});
@@ -123,12 +56,8 @@ class ViewTodos {
 	bindToggleTodo(handler) {
 		this.todoList.addEventListener("click", (e) => {
 			if (e.target.classList.contains("checkbox")) {
-				// e.target
-				// 	.closest(".todoList__item")
-				// 	.querySelector(".editable")
-				// 	.setAttribute("contenteditable", `true ? "" : "true"`);
-
 				const id = ViewTodos.getTodoId(e);
+				ViewTodos.toggleTodo(e);
 				handler(+id);
 			}
 		});
@@ -139,9 +68,70 @@ class ViewTodos {
 			if (this._temporaryTodoText) {
 				const id = ViewTodos.getTodoId(e);
 				handler(+id, this._temporaryTodoText);
+
 				this._temporaryTodoText = "";
 			}
 		});
+	}
+
+	initRender(todos) {
+		while (this.todoList.firstChild) {
+			this.todoList.removeChild(this.todoList.firstChild);
+		}
+		todos.forEach((todo) => this.addTodo(todo));
+	}
+
+	addTodo(todo) {
+		let dt = "";
+		if (todo.dueDate) {
+			dt = DateTime.fromISO(todo.dueDate).toFormat("M月d日 HH:mm");
+		}
+
+		const markup = `
+      	<div slide-in-from="top"  class="todoList__item show" data-id=${todo.id}>
+					<div class="todoList__fhbox">
+						<input type="checkbox" class="checkbox todoList__checkbox" id="complete" ${
+							todo.completed ? "checked" : ""
+						}>
+						<span class="todoList__text editable--1" ${
+							todo.completed === true ? "" : "contenteditable"
+						} >${todo.text}</span>
+
+						<span class="todoList__dueDate" >${dt}</span>
+
+					</div>
+					<div class="todoList__shbox">
+						<img
+							src="${subIcon}"
+							weight="50"
+							height="50"
+							alt="Delete button"
+							class="btn todoList__delete-btn delete"
+						/>
+					</div>
+     		</div>
+				 `;
+		// if (this.todoList.childElementCount > 2) {
+		// 	this.todoList.removeChild(this.todoList.lastElementChild);
+		// }
+
+		this.todoList.insertAdjacentHTML("afterbegin", markup);
+	}
+
+	static toggleTodo(e) {
+		e.target.nextElementSibling.toggleAttribute("contenteditable");
+		// console.log(e.target.nextElementSibling);
+	}
+
+	static deleteTodo(todo) {
+		todo.setAttribute("slide-out-to", "top");
+		todo.addEventListener("animationend", () => {
+			todo.remove();
+		});
+	}
+
+	static getTodoId(e) {
+		return e.target.closest(".todoList__item").getAttribute("data-id");
 	}
 }
 
