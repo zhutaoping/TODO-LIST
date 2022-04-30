@@ -73,11 +73,11 @@
 		transform: scale(0.7);
 	}
 
-	&:hover {
+	&:hover img {
 		transform: translateY(-2px);
 	}
 
-	&:active {
+	&:active img {
 		transform: translateY(0);
 	}
 }
