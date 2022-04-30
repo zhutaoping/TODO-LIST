@@ -9,8 +9,9 @@
 
 	&__title {
 		color: #4caf50;
+		font-size: clamp(3rem, 4vw, 4rem);
+
 		padding: 0.5rem 0 0 2rem;
-		font-size: 4rem;
 		font-weight: 600;
 		letter-spacing: 0.5rem;
 	}
@@ -30,7 +31,9 @@
 
 	&__dueDate {
 		padding: 0.3rem 1rem;
-		width: fit-content;
+		// width: 40vw;
+		// min-width: 200px;
+		width: calc(max(20vw, 200px)); // calc() is for sass
 		font-size: 1.7rem;
 		margin: 0 1rem 1rem 1rem;
 	}

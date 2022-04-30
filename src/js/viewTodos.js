@@ -111,10 +111,6 @@ class ViewTodos {
 					</div>
      		</div>
 				 `;
-		// if (this.todoList.childElementCount > 2) {
-		// 	this.todoList.removeChild(this.todoList.lastElementChild);
-		// }
-
 		this.todoList.insertAdjacentHTML("afterbegin", markup);
 	}
 
