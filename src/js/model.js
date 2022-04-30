@@ -7,13 +7,13 @@ class Model {
 		this.todos = JSON.parse(localStorage.getItem("todos")) || [];
 	}
 
-	addTodo(todoText, todoDueDate) {
+	addTodo(text, dueDate, dueTime) {
 		const todo = {
 			id: this.todos.length > 0 ? this.todos[this.todos.length - 1].id + 1 : 1,
-			text: todoText,
+			text,
 			completed: false,
-			dueDate: todoDueDate,
-			page: 1,
+			dueDate,
+			dueTime,
 		};
 		this.todos.push(todo);
 		this.handleAddTodoRender(todo);

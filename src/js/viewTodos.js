@@ -29,13 +29,17 @@ class ViewTodos {
 
 	inputDueDate = document.querySelector(".header__dueDate");
 
+	inputDueTime = document.querySelector(".header__dueTime");
+
 	bindAddTodo(handler) {
 		this.btn.addEventListener("click", (e) => {
 			e.preventDefault();
 			if (this.inputText.value) {
 				const text = this.inputText.value;
 				const dueDate = this.inputDueDate.value;
-				handler(text, dueDate);
+				const dueTime = this.inputDueTime.value;
+				// console.log(dueDate, dueTime);
+				handler(text, dueDate, dueTime);
 
 				this.inputText.value = "";
 			}
@@ -82,9 +86,11 @@ class ViewTodos {
 	}
 
 	addTodo(todo) {
-		let dt = "";
+		console.log(todo);
+		let dtDate = "";
+
 		if (todo.dueDate) {
-			dt = DateTime.fromISO(todo.dueDate).toFormat("M月d日 HH:mm");
+			dtDate = DateTime.fromISO(todo.dueDate).toFormat("M月d日");
 		}
 
 		const markup = `
@@ -97,7 +103,7 @@ class ViewTodos {
 							todo.completed === true ? "" : "contenteditable"
 						} >${todo.text}</span>
 
-						<span class="todoList__dueDate" >${dt}</span>
+						<span class="todoList__dueDate" >${dtDate} ${todo.dueTime}</span>
 
 					</div>
 					<div class="todoList__shbox">

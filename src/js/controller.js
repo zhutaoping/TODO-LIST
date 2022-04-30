@@ -5,7 +5,7 @@ import viewTodos from "./viewTodos";
 
 class Controller {
 	constructor() {
-		// console.log(model.todos);
+		console.log(model.todos);
 		// viewTodos.initRender(model.getListPage());
 		viewTodos.initRender(model.todos);
 
@@ -26,9 +26,9 @@ class Controller {
 		viewTodos.initRender(todos);
 	}
 
-	static handleAddTodo(todoText, todoDueDate) {
-		if (!todoText) return;
-		model.addTodo(todoText, todoDueDate);
+	static handleAddTodo(text, dueDate, dueTime) {
+		if (!text) return;
+		model.addTodo(text, dueDate, dueTime);
 	}
 
 	static handleDeleteTodo(id) {
