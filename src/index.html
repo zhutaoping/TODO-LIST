@@ -14,7 +14,6 @@
 		<title>TODO LIST</title>
 	</head>
 	<body>
-		<div class="container">
 		<div class="header">
 			<h1 class="header__title">待辦事項</h1>
 			<form class="header__input-box">
@@ -26,7 +25,7 @@
 					placeholder="輸入事項"
 					autofocus
 				/>
-				
+
 				<button class="btn header__btn-input" type="submit" style="border: 0">
 					<img
 						src="./images/plus.png"
@@ -38,16 +37,16 @@
 				</button>
 			</form>
 			<input
-					name="header__dueDate"
-					id="header__dueDate"
-					class="header__dueDate"
-					placeholder="到期日" 
-					type="datetime-local" 
-				/>
+				name="header__dueDate"
+				id="header__dueDate"
+				class="header__dueDate"
+				type="datetime-local"
+			/>
 		</div>
 		<nav class="nav">
 			<div class="nav__tabs"></div>
 		</nav>
+
 		<div class="todoList"></div>
 
 		<div class="pagination"></div>
