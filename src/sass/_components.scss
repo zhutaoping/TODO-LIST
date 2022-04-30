@@ -21,6 +21,7 @@
 	}
 
 	&__text {
+		flex: 1; // keep checkbox in size
 		margin-bottom: 0.2rem;
 		padding: 0.5rem;
 		font-weight: 400;
