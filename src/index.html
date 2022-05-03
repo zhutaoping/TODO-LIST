@@ -17,22 +17,22 @@
 		<div class="header">
 			<div class="header__title">
 				<h1 class="header__title">待辦事項</h1>
-				<form action="" class="header__create">
+
+				<form action="" data-new-list-form class="header__new-list-form">
 					<input
 						type="text"
-						class="header__new-list"
-						placeholder="新清單名稱"
-						aria-label="new list name"
+						class="header__new-list-input"
+						data-new-list-input
+						placeholder="新清單"
+						aria-label="新清單"
 					/>
-					<button class="btn create" aria-label="新清單名稱">
+					<button class="btn create" aria-label="新清單">
 						<span>+</span>
 					</button>
-
-					<select name="lists" class="header__select">
-						<option>選擇清單</option>
-						<option>Dog</option>
-						<option>Cat</option>
-					</select>
+					<select
+						id="lists-select"
+						class="header__select list-container"
+					></select>
 				</form>
 			</div>
 			<form class="header__input-box">
@@ -41,7 +41,7 @@
 					name="header__text"
 					id="header__text"
 					class="header__text"
-					placeholder="輸入事項"
+					placeholder="新事項"
 					autofocus
 				/>
 
@@ -78,6 +78,8 @@
 
 		<div class="todoList"></div>
 
-		<div class="pagination"></div>
+		<div class="btn delete-list">
+			<button class="btn--delete-list">刪除清單</button>
+		</div>
 	</body>
 </html>

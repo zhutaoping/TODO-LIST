@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 
 import subIcon from "../../src/images/substract.png";
 
-class ViewTodos {
+class ViewTodo {
 	_temporaryTodoText;
 
 	constructor() {
@@ -12,6 +12,8 @@ class ViewTodos {
 			}
 		});
 	}
+
+	headerTitle = document.querySelector(".header__title");
 
 	btn = document.querySelector(".header__btn-input");
 
@@ -49,9 +51,9 @@ class ViewTodos {
 	bindDeleteTodo(handler) {
 		this.todoList.addEventListener("click", (e) => {
 			if (e.target.classList.contains("delete")) {
-				const id = ViewTodos.getTodoId(e);
+				const id = ViewTodo.getTodoId(e);
 				const todo = e.target.closest(".todoList__item");
-				ViewTodos.deleteTodo(todo);
+				ViewTodo.deleteTodo(todo);
 				handler(+id);
 			}
 		});
@@ -60,8 +62,8 @@ class ViewTodos {
 	bindToggleTodo(handler) {
 		this.todoList.addEventListener("click", (e) => {
 			if (e.target.classList.contains("checkbox")) {
-				const id = ViewTodos.getTodoId(e);
-				ViewTodos.toggleTodo(e);
+				const id = ViewTodo.getTodoId(e);
+				ViewTodo.toggleTodo(e);
 				handler(+id);
 			}
 		});
@@ -70,7 +72,7 @@ class ViewTodos {
 	bindEditTodoText(handler) {
 		this.todoList.addEventListener("focusout", (e) => {
 			if (this._temporaryTodoText) {
-				const id = ViewTodos.getTodoId(e);
+				const id = ViewTodo.getTodoId(e);
 				handler(+id, this._temporaryTodoText);
 
 				this._temporaryTodoText = "";
@@ -136,4 +138,4 @@ class ViewTodos {
 	}
 }
 
-export default new ViewTodos();
+export default new ViewTodo();

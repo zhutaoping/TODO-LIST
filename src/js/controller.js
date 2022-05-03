@@ -1,29 +1,31 @@
 import "../sass/main.scss";
 
 import modelTodo from "./modelTodo";
-import viewTodos from "./viewTodos";
+import viewTodo from "./viewTodo";
+import model from "./model";
 
 class Controller {
 	constructor() {
 		// console.log(modelTodo.todos);
-		// viewTodos.initRender(modelTodo.getListPage());
-		viewTodos.initRender(modelTodo.todos);
+		// viewTodo.initRender(modelTodo.getListPage());
+		viewTodo.initRender(modelTodo.todos);
+		modelList.render();
 
-		viewTodos.bindAddTodo(Controller.handleAddTodo);
-		viewTodos.bindDeleteTodo(Controller.handleDeleteTodo);
-		viewTodos.bindToggleTodo(Controller.handleToggleTodo);
-		viewTodos.bindEditTodoText(Controller.handleEditTodoText);
+		viewTodo.bindAddTodo(Controller.handleAddTodo);
+		viewTodo.bindDeleteTodo(Controller.handleDeleteTodo);
+		viewTodo.bindToggleTodo(Controller.handleToggleTodo);
+		viewTodo.bindEditTodoText(Controller.handleEditTodoText);
 
 		modelTodo.bindAddTodoRender(Controller.handleAddTodoRender);
 		modelTodo.bindEditTodoRender(Controller.handleEditTodoRender);
 	}
 
 	static handleAddTodoRender(todo) {
-		viewTodos.addTodo(todo);
+		viewTodo.addTodo(todo);
 	}
 
 	static handleEditTodoRender(todos) {
-		viewTodos.initRender(todos);
+		viewTodo.initRender(todos);
 	}
 
 	static handleAddTodo(text, dueDate, dueTime) {
