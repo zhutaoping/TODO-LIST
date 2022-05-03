@@ -86,7 +86,6 @@ class ViewTodos {
 	}
 
 	addTodo(todo) {
-		console.log(todo);
 		let dtDate = "";
 
 		if (todo.dueDate) {
@@ -109,8 +108,8 @@ class ViewTodos {
 					<div class="todoList__shbox">
 						<img
 							src="${subIcon}"
-							weight="50"
-							height="50"
+							weight="35"
+							height="35"
 							alt="Delete button"
 							class="btn todoList__delete-btn delete"
 						/>

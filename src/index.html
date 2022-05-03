@@ -15,7 +15,26 @@
 	</head>
 	<body>
 		<div class="header">
-			<h1 class="header__title">待辦事項</h1>
+			<div class="header__title">
+				<h1 class="header__title">待辦事項</h1>
+				<form action="" class="header__create">
+					<input
+						type="text"
+						class="header__new-list"
+						placeholder="新清單名稱"
+						aria-label="new list name"
+					/>
+					<button class="btn create" aria-label="新清單名稱">
+						<span>+</span>
+					</button>
+
+					<select name="lists" class="header__select">
+						<option>選擇清單</option>
+						<option>Dog</option>
+						<option>Cat</option>
+					</select>
+				</form>
+			</div>
 			<form class="header__input-box">
 				<input
 					type="text"
@@ -29,8 +48,8 @@
 				<button class="btn header__btn-input" type="submit" style="border: 0">
 					<img
 						src="./images/plus.png"
-						weight="40"
-						height="40"
+						weight="30"
+						height="30"
 						alt="Add button"
 						class="header__btn-icon"
 					/>

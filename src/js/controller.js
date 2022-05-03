@@ -1,21 +1,21 @@
 import "../sass/main.scss";
 
-import model from "./model";
+import modelTodo from "./modelTodo";
 import viewTodos from "./viewTodos";
 
 class Controller {
 	constructor() {
-		console.log(model.todos);
-		// viewTodos.initRender(model.getListPage());
-		viewTodos.initRender(model.todos);
+		// console.log(modelTodo.todos);
+		// viewTodos.initRender(modelTodo.getListPage());
+		viewTodos.initRender(modelTodo.todos);
 
 		viewTodos.bindAddTodo(Controller.handleAddTodo);
 		viewTodos.bindDeleteTodo(Controller.handleDeleteTodo);
 		viewTodos.bindToggleTodo(Controller.handleToggleTodo);
 		viewTodos.bindEditTodoText(Controller.handleEditTodoText);
 
-		model.bindAddTodoRender(Controller.handleAddTodoRender);
-		model.bindEditTodoRender(Controller.handleEditTodoRender);
+		modelTodo.bindAddTodoRender(Controller.handleAddTodoRender);
+		modelTodo.bindEditTodoRender(Controller.handleEditTodoRender);
 	}
 
 	static handleAddTodoRender(todo) {
@@ -28,19 +28,19 @@ class Controller {
 
 	static handleAddTodo(text, dueDate, dueTime) {
 		if (!text) return;
-		model.addTodo(text, dueDate, dueTime);
+		modelTodo.addTodo(text, dueDate, dueTime);
 	}
 
 	static handleDeleteTodo(id) {
-		model.deleteTodo(id);
+		modelTodo.deleteTodo(id);
 	}
 
 	static handleToggleTodo(id) {
-		model.toggleTodo(id);
+		modelTodo.toggleTodo(id);
 	}
 
 	static handleEditTodoText(id, updatedText) {
-		model.editTodoText(id, updatedText);
+		modelTodo.editTodoText(id, updatedText);
 	}
 }
 

@@ -1,6 +1,6 @@
 // import _ from "lodash";
 
-class Model {
+class ModelTodo {
 	todos = [];
 
 	constructor() {
@@ -60,4 +60,4 @@ class Model {
 	// }
 }
 
-export default new Model();
+export default new ModelTodo();
