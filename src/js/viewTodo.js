@@ -33,6 +33,8 @@ class ViewTodo {
 
 	inputDueTime = document.querySelector(".header__dueTime");
 
+	listsContainer = document.querySelector(".list-container");
+
 	bindAddTodo(handler) {
 		this.btn.addEventListener("click", (e) => {
 			e.preventDefault();
@@ -80,10 +82,22 @@ class ViewTodo {
 		});
 	}
 
-	initRender(todos) {
+	listsRender(lists) {
+		lists.forEach((list) => {
+			const listElement = document.createElement("option");
+			listElement.dataset.listId = list.id;
+			listElement.classList.add("list-name");
+			listElement.innerText = list.name;
+
+			this.listsContainer.appendChild(listElement);
+		});
+	}
+
+	todosRender(todos) {
 		while (this.todoList.firstChild) {
 			this.todoList.removeChild(this.todoList.firstChild);
 		}
+		if (!todos) return;
 		todos.forEach((todo) => this.addTodo(todo));
 	}
 
