@@ -73,28 +73,24 @@
 	border: 0;
 	position: relative;
 
-	& span {
-		font-size: 4rem;
-		color: $color-primary;
-	}
-
 	@include respond(phone) {
 		transform: scale(0.7);
 	}
 
-	&:hover {
+	&:hover img {
 		transform: translateY(-2px);
 	}
 
-	&:active {
+	&:active img {
 		transform: translateY(0);
 	}
 
-	&.create {
-		font-size: 1.5rem;
-		font-weight: 900;
-		margin-right: 0.25em;
-		transition: opacity 250ms ease-in;
+	&--create {
+		background-color: inherit;
+		cursor: pointer;
+		border: 0;
+		transition: all 0.1s;
+		// transition: opacity 250ms ease-in;
 	}
 
 	&--delete-list {
