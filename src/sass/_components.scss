@@ -103,7 +103,8 @@
 		color: whitesmoke;
 		margin-top: 1.5rem;
 		position: absolute;
-		right: 1rem;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 }
 
