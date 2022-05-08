@@ -1,6 +1,5 @@
 import { DateTime } from "luxon";
-
-import subIcon from "../../src/images/substract.png";
+import subIcon from "../images/substract.png";
 
 class ViewTodo {
 	_temporaryTodoText;
@@ -8,27 +7,6 @@ class ViewTodo {
 	curId;
 
 	curTodo;
-
-	constructor() {
-		this.todoList.addEventListener("input", (e) => {
-			if (e.target.classList.contains("editable--1")) {
-				this._temporaryTodoText = e.target.innerText;
-			}
-		});
-
-		this.todoList.addEventListener("click", (e) => {
-			if (e.target.classList.contains("btn__delete-todo")) {
-				this.curId = ViewTodo.getTodoId(e);
-				this.curTodo = e.target.closest(".todoList__item");
-				this.modal.showModal();
-			}
-		});
-
-		this.cancelBtn.addEventListener("click", (event) => {
-			event.preventDefault();
-			this.modal.close();
-		});
-	}
 
 	headerTitle = document.querySelector(".header__title");
 
@@ -57,6 +35,27 @@ class ViewTodo {
 	confirmBtn = document.querySelector("[data-confirm-btn]");
 
 	cancelBtn = document.querySelector("[data-cancel-btn]");
+
+	constructor() {
+		this.todoList.addEventListener("input", (e) => {
+			if (e.target.classList.contains("editable--1")) {
+				this._temporaryTodoText = e.target.innerText;
+			}
+		});
+
+		this.todoList.addEventListener("click", (e) => {
+			if (e.target.classList.contains("btn__delete-todo")) {
+				this.curId = ViewTodo.getTodoId(e);
+				this.curTodo = e.target.closest(".todoList__item");
+				this.modal.showModal();
+			}
+		});
+
+		this.cancelBtn.addEventListener("click", (event) => {
+			event.preventDefault();
+			this.modal.close();
+		});
+	}
 
 	bindAddTodo(handler) {
 		this.addBtn.addEventListener("click", (e) => {
