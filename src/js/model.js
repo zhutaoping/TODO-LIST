@@ -7,11 +7,9 @@ class Model {
 			const listName = this.newListInput.value;
 			if (listName == null || listName === "") return;
 			const list = Model.createList(listName);
-			console.log(list);
 			this.newListInput.value = null;
 			this.lists.push(list);
 			this.selectedListId = list.id;
-			console.log(list.id);
 			this.saveAndRender();
 		});
 
@@ -23,7 +21,15 @@ class Model {
 
 		this.deleteListBtn.addEventListener("click", () => {
 			if (this.lists.length === 0) return;
+			this.modal2.showModal();
+		});
 
+		this.cancelBtn2.addEventListener("click", (e) => {
+			e.preventDefault();
+			this.modal2.close();
+		});
+
+		this.confirmBtn2.addEventListener("click", () => {
 			const option = this.getSelectedOption();
 			this.selectedListId = option.dataset.listId;
 
@@ -57,6 +63,12 @@ class Model {
 	selectedListId = localStorage.getItem(
 		this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY
 	);
+
+	modal2 = document.querySelector("[data-confirm-modal2]");
+
+	confirmBtn2 = document.querySelector("[data-confirm-btn2]");
+
+	cancelBtn2 = document.querySelector("[data-cancel-btn2]");
 
 	static createList(name) {
 		return { id: Date.now().toString(), name, todos: [] };

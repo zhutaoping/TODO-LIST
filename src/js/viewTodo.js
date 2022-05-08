@@ -5,17 +5,34 @@ import subIcon from "../../src/images/substract.png";
 class ViewTodo {
 	_temporaryTodoText;
 
+	curId;
+
+	curTodo;
+
 	constructor() {
 		this.todoList.addEventListener("input", (e) => {
 			if (e.target.classList.contains("editable--1")) {
 				this._temporaryTodoText = e.target.innerText;
 			}
 		});
+
+		this.todoList.addEventListener("click", (e) => {
+			if (e.target.classList.contains("btn__delete-todo")) {
+				this.curId = ViewTodo.getTodoId(e);
+				this.curTodo = e.target.closest(".todoList__item");
+				this.modal.showModal();
+			}
+		});
+
+		this.cancelBtn.addEventListener("click", (event) => {
+			event.preventDefault();
+			this.modal.close();
+		});
 	}
 
 	headerTitle = document.querySelector(".header__title");
 
-	btn = document.querySelector(".header__btn-input");
+	addBtn = document.querySelector(".header__btn-input");
 
 	inputText = document.querySelector(".header__text");
 
@@ -23,7 +40,7 @@ class ViewTodo {
 
 	todoListItem = document.querySelector(".todoList__item");
 
-	deleteBtn = document.querySelector(".todoList__delete-btn");
+	deleteBtn = document.querySelector(".btn__delete-todo");
 
 	editable = document.querySelector(".editable");
 
@@ -35,14 +52,20 @@ class ViewTodo {
 
 	listsContainer = document.querySelector(".list-container");
 
+	modal = document.querySelector("[data-confirm-modal]");
+
+	confirmBtn = document.querySelector("[data-confirm-btn]");
+
+	cancelBtn = document.querySelector("[data-cancel-btn]");
+
 	bindAddTodo(handler) {
-		this.btn.addEventListener("click", (e) => {
+		this.addBtn.addEventListener("click", (e) => {
 			e.preventDefault();
+
 			if (this.inputText.value) {
 				const text = this.inputText.value;
 				const dueDate = this.inputDueDate.value;
 				const dueTime = this.inputDueTime.value;
-				// console.log(dueDate, dueTime);
 				handler(text, dueDate, dueTime);
 
 				this.inputText.value = "";
@@ -51,13 +74,9 @@ class ViewTodo {
 	}
 
 	bindDeleteTodo(handler) {
-		this.todoList.addEventListener("click", (e) => {
-			if (e.target.classList.contains("delete")) {
-				const id = ViewTodo.getTodoId(e);
-				const todo = e.target.closest(".todoList__item");
-				ViewTodo.deleteTodo(todo);
-				handler(+id);
-			}
+		this.confirmBtn.addEventListener("click", () => {
+			ViewTodo.deleteTodo(this.curTodo);
+			handler(+this.curId);
 		});
 	}
 
@@ -121,15 +140,15 @@ class ViewTodo {
 						<span class="todoList__dueDate" >${dtDate} ${todo.dueTime}</span>
 
 					</div>
-					<div class="todoList__shbox">
+					<button class="btn todoList__shbox btn__delete-todo">
 						<img
 							src="${subIcon}"
 							weight="35"
 							height="35"
 							alt="Delete button"
-							class="btn todoList__delete-btn delete"
+							class="btn__delete-todo"
 						/>
-					</div>
+					</button>
      		</div>
 				 `;
 		this.todoList.insertAdjacentHTML("afterbegin", markup);

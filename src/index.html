@@ -51,7 +51,7 @@
 					autofocus
 				/>
 
-				<button class="btn header__btn-input" type="submit" style="border: 0">
+				<button class="btn header__btn-input" type="submit">
 					<img
 						src="./images/plus.png"
 						weight="30"
@@ -78,14 +78,41 @@
 				/>
 			</form>
 		</div>
-		<nav class="nav">
-			<div class="nav__tabs"></div>
-		</nav>
+
+		<dialog class="modal" id="modal" data-confirm-modal>
+			<form method="dialog" class="form">
+				<label class="modal__title">確定刪除？</label>
+				<div class="modal__btns">
+					<button class="modal__btn modal__confirm-btn" data-confirm-btn>
+						確定
+					</button>
+
+					<button class="modal__btn modal__cancel-btn" data-cancel-btn>
+						取消
+					</button>
+				</div>
+			</form>
+		</dialog>
+
+		<dialog class="modal" id="modal2" data-confirm-modal2>
+			<form method="dialog" class="form">
+				<label class="modal__title">確定刪除？</label>
+				<div class="modal__btns">
+					<button class="modal__btn modal__confirm-btn" data-confirm-btn2>
+						確定
+					</button>
+
+					<button class="modal__btn modal__cancel-btn" data-cancel-btn2>
+						取消
+					</button>
+				</div>
+			</form>
+		</dialog>
 
 		<div class="todoList"></div>
 
 		<div class="btn delete-list">
-			<button class="btn--delete-list">刪除清單</button>
+			<button class="btn btn--delete-list">刪除清單</button>
 		</div>
 	</body>
 </html>
