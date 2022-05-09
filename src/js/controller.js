@@ -5,7 +5,6 @@ import model from "./model";
 
 class Controller {
 	constructor() {
-		console.log(model.lists);
 		model.render();
 
 		viewTodo.bindAddTodo(Controller.handleAddTodo);
