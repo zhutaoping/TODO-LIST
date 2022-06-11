@@ -26,7 +26,6 @@ class Controller {
 	}
 
 	static onTodosRender(todos) {
-		console.log("test");
 		viewTodo.todosRender(todos);
 	}
 

@@ -91,7 +91,6 @@ class Model {
 					dueTime,
 				};
 				list.todos.push(todo);
-				console.log(list.todos);
 				this.onAddTodoRender(todo);
 				this.save();
 			}
